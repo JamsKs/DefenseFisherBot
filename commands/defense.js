@@ -8,6 +8,7 @@ module.exports.run = async (Client, message, args, Discord) => {
     WF.fissures.then(fissures => {
         for (const element of fissures)
             if (element.type == "Defense") {
+                check = Boolean("True");
                 const temb = new Discord.MessageEmbed()
                     .setColor(0x6509ed)
                     .setTitle(element.node)
@@ -16,9 +17,8 @@ module.exports.run = async (Client, message, args, Discord) => {
                     .setTimestamp()
 
                 message.channel.send({ embeds: [temb]})
-                check = Boolean("True");
             }
-        if (check == false)
+        if (!check)
             message.channel.send("There's no defense missions currently")
     });
 }
